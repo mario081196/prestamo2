@@ -21,7 +21,7 @@ import java.util.List;
 
 public class PrincipalActivity extends AppCompatActivity {
 
-    public static List<Client> lista_clientes = new ArrayList<>(); //Almacenara todos los clientes que guardemos
+    public static List<Client> lista_clientes = new ArrayList<>();
    public static List<Prestamo> lista_prestamo = new ArrayList<>();
    public static TextView tv;
 
@@ -40,14 +40,14 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) { //Con esta funcion sabemos que item del menu ha sido cliqueado
-        switch (item.getItemId()) { //Verificamos que item ha seleccionado el usuario
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.mn_icon_nuevo:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivityForResult(intent, 1234);
                 break;
             case R.id.mn_nuevo_prestamo:
-                if(lista_clientes.size() == 0){ //Si no se han ingresado clientes no abrimos el activity
+                if(lista_clientes.size() == 0){
                     Toast.makeText(this, "Primero debe ingresar un cliente", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -59,7 +59,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 Toast.makeText(this, "Electiva Android", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mn_ver_clientes:
-                if(lista_clientes.size() == 0){ //Si no se han ingresado clientes no abrimos el activity
+                if(lista_clientes.size() == 0){
                     Toast.makeText(this, "No se han ingresado clientes", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -68,7 +68,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.mc_ver_prestamos:
-                if(lista_prestamo.size() == 0){ //Si no se han registrado prestamos no abrimos la activity
+                if(lista_prestamo.size() == 0){
                     Toast.makeText(this, "No se han ingresado prestamos", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -81,27 +81,27 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //Obtenemos los valores que nos envia la activity a la que llamamos
-        if(requestCode==1234){ //El codigo que enviamos a la activity que registra los clientes
-            if(resultCode==0){ //Si el usuario da clic en cancelar
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode==1234){
+            if(resultCode==0){
                 tv.append("Cancelo ingreso de cliente\n");
                 registerForContextMenu(tv);
             }
-            else{ //Si el usuario da clic en guardar
-                Client nuevo = (Client) data.getExtras().getSerializable("cliente"); //Obtenemos los datos que nos envia la activity donde se registran los clientes
-                lista_clientes.add(nuevo); //Añadimos el cliente a la lista de clientes
+            else{
+                Client nuevo = (Client) data.getExtras().getSerializable("cliente");
+                lista_clientes.add(nuevo);
                 tv.append("Ingreso de cliente" + " "+ nuevo.nombre + "\n");
                 registerForContextMenu(tv);
             }
         }
-        else{ //Si es el codigo que le mandamos a la activity que registra los prestamos
-            if(resultCode==0){ //Si el usuario da clic en cancelar
+        else{
+            if(resultCode==0){
                 tv.append("Cancelo ingreso de prestamo\n");
                 registerForContextMenu(tv);
             }
-            else{ //Si el usuario da clic en guardar
-                Prestamo ptr = (Prestamo) data.getExtras().getSerializable("prestamo"); //Obtenemos los datos que nos envia la activity donde se registran los prestamos
-                lista_prestamo.add(ptr); //Añadimos el prestamo a la lista de prestamos
+            else{
+                Prestamo ptr = (Prestamo) data.getExtras().getSerializable("prestamo");
+                lista_prestamo.add(ptr);
                 tv.append("Ingreso de nuevo prestamo \n");
                 registerForContextMenu(tv);
             }

@@ -17,7 +17,7 @@ public class Ver_Prestamo_Activity extends AppCompatActivity {
         verPrestamos(posicion);
     }
 
-   public void verPrestamos(int posicion){ //Mostramos los datos de los prestamos en la activity
+   public void verPrestamos(int posicion){
         Prestamo pt = PrincipalActivity.lista_prestamo.get(posicion);
         TextView cliente = findViewById(R.id.txt_cliente);
         cliente.setText(pt.cliente);
@@ -38,10 +38,10 @@ public class Ver_Prestamo_Activity extends AppCompatActivity {
     }
 
     public void onClick_siguiente(View v){
-        if(posicion == (PrincipalActivity.lista_prestamo.size() - 1)){ //Verificamos si esta al final de la lista
+        if(posicion == (PrincipalActivity.lista_prestamo.size() - 1)){
             Toast.makeText(this, "Llego al final", Toast.LENGTH_SHORT).show();
         }
-        else{ //Si no esta al final de la lista recorremos una posicion
+        else{
             posicion++;
             verPrestamos(posicion);
         }
@@ -49,10 +49,10 @@ public class Ver_Prestamo_Activity extends AppCompatActivity {
     }
 
     public void onClick_anterior(View v){
-        if(posicion==0){ //Verificamos que no esta al inicio de la lista
+        if(posicion==0){
             Toast.makeText(this, "Llego al inicio", Toast.LENGTH_SHORT).show();
         }
-        else{ //Si no esta al inicio de la lista decrementamos la posicion
+        else{
             posicion--;
             verPrestamos(posicion);
         }

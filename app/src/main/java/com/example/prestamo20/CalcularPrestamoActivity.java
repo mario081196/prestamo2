@@ -31,7 +31,7 @@ public class CalcularPrestamoActivity extends AppCompatActivity {
     private TextView fecha_fin;
     private String date;
     public Spinner sp;
-    public static List<String> clientes = new ArrayList<>(); //Lista que almacenara los nombres y apellidos de los clientes para mostrarlos en el spinner
+    public static List<String> clientes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,13 @@ public class CalcularPrestamoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calcular_prestamo);
 
         date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
-        TextView fecha = findViewById(R.id.textView_fecha); //Obtenemos el TextView de fecha
-        plazo = findViewById(R.id.editText_plazo); //Obtenemos el EditText de plazo
-        monto = findViewById(R.id.editText_monto); //Obtenemos el EditText de monto
-        monto_a_pagar = findViewById(R.id.textViewMontoPagar); //Obtenemos el TextView de Monto a pagar
-        interes = findViewById(R.id.spinner_interes); //Obtenemos el spinner de interes
-        fecha_fin = findViewById(R.id.textView_fechaFin); //Obtenemos el TextView de fecha fin
-        cuota = findViewById(R.id.textViewMontoCuota); //Obtenemos el TextView de cuota
+        TextView fecha = findViewById(R.id.textView_fecha);
+        plazo = findViewById(R.id.editText_plazo);
+        monto = findViewById(R.id.editText_monto);
+        monto_a_pagar = findViewById(R.id.textViewMontoPagar);
+        interes = findViewById(R.id.spinner_interes);
+        fecha_fin = findViewById(R.id.textView_fechaFin);
+        cuota = findViewById(R.id.textViewMontoCuota);
         fecha.setText(date);
         fecha_de_pago();
         Cargar_Clientes();
@@ -69,7 +69,7 @@ public class CalcularPrestamoActivity extends AppCompatActivity {
         });
 
 
-        //On TextChange en el campo monto
+
         monto.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -103,27 +103,27 @@ public class CalcularPrestamoActivity extends AppCompatActivity {
 
 
     public void pago(){
-        int aux = 0; //Variable auxiliar que almacenara el valor ingresado en monto
-        if(monto.getText().toString().length()!=0) //Verificamos que el EditText no este en 0
+        int aux = 0;
+        if(monto.getText().toString().length()!=0)
             aux=Integer.valueOf(monto.getText().toString());
-        int aux_interes = Integer.valueOf(interes.getSelectedItem().toString()); //Variable auxiliar que almacenara el interes que se le aplicara al monto
+        int aux_interes = Integer.valueOf(interes.getSelectedItem().toString());
         int plazo_interes = 0;
         if(plazo.getText().length()!=0){
             plazo_interes = Integer.valueOf(plazo.getText().toString());
         }
         int interes_final = ((aux*aux_interes)/100) * plazo_interes;
-        Double total = Double.valueOf(aux + interes_final); //Creamos una variable que almacenara el monto total ya con el interes calculado
-        String monto_string = String.valueOf(total); //Convertimos el total a string para poder imprimirlo en un TextView
-        monto_a_pagar.setText(monto_string); //Escribimos el total ya convertido a String en el TextView
-        Double aux_plazo = 0.0; //Definimos una variable Double que almacenara la cantidad de dinero que tendra que abonar el cliente por mes
-        if(plazo.getText().toString().length()!=0){ //Verificamos que el plazo no sea 0
-            int plazo_aux = Integer.valueOf(plazo.getText().toString()); //Obtenemos el plazo que se ha escogido en el spinner
-            aux_plazo = Double.valueOf((total) / (plazo_aux)); //Dividimos el total/plazo para obtener las cuotas que dara el cliente mensual
-            cuota.setText(String.valueOf(aux_plazo)); //Mostramos el valor del plazo en un TextView
+        Double total = Double.valueOf(aux + interes_final);
+        String monto_string = String.valueOf(total);
+        monto_a_pagar.setText(monto_string);
+        Double aux_plazo = 0.0;
+        if(plazo.getText().toString().length()!=0){
+            int plazo_aux = Integer.valueOf(plazo.getText().toString());
+            aux_plazo = Double.valueOf((total) / (plazo_aux));
+            cuota.setText(String.valueOf(aux_plazo));
 
         }
         else{
-            cuota.setText(String.valueOf(total)); //Si el plazo es 0, el cliente tendra que pagar el total en una sola cuota
+            cuota.setText(String.valueOf(total));
         }
     }
 
@@ -189,13 +189,15 @@ public class CalcularPrestamoActivity extends AppCompatActivity {
     }
 
     public void Cargar_Clientes(){
-        sp = findViewById(R.id.sp_clientes); //Control Spinner
-        for(int i=0; i<PrincipalActivity.lista_clientes.size(); i++){ //Hacemos un for para almacenar los nombres y apellidos de los clientes que se han ingresado
-            String aux = PrincipalActivity.lista_clientes.get(i).nombre + " " + PrincipalActivity.lista_clientes.get(i).apellido;
+        sp = findViewById(R.id.sp_clientes);
+        for(int i=0; i<PrincipalActivity.lista_clientes.size(); i++){
+            String aux = PrincipalActivity.lista_clientes.get(i).nombre + " " +
+                    PrincipalActivity.lista_clientes.get(i).apellido;
             clientes.add(aux);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, clientes);
-        //Asignar el adaptador al espiner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_dropdown_item, clientes);
+
         sp.setAdapter(adapter);
     }
 

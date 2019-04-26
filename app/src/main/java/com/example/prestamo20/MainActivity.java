@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         cadena_ocupacion = ocupacion.getText().toString();
         Spinner sexo = findViewById(R.id.spinner_sexo);
         cadena_sexo = sexo.getSelectedItem().toString();
-        if(cadena_nombre.isEmpty()){ //Verificamos que los campos obligatorios no queden vacios
+        if(cadena_nombre.isEmpty()){
             nombre.setError("Debe llenar este campo");
             Toast.makeText(this, "Debe llenar ciertos campos", Toast.LENGTH_SHORT).show();
         }
@@ -69,16 +69,16 @@ public class MainActivity extends AppCompatActivity {
             nuevo.apellido = cadena_apellido;
             Intent intent = new Intent();
             intent.putExtra("cliente", (Serializable) nuevo);
-            setResult(RESULT_OK, intent); //Le mandamos a decir que el usuario dio clic en cancelar a la activity que nos invoco
-            finish(); //Cerramos la activity
+            setResult(RESULT_OK, intent);
+            finish();
         }
 
     }
 
-    public void onClick_cancelar(View v){ //Si el usuario da clic en el boton de cancelar
+    public void onClick_cancelar(View v){
         Intent intent = new Intent();
-        setResult(RESULT_CANCELED, intent); //Le mandamos a decir que el usuario dio clic en cancelar a la activity que nos invoco
-        finish(); //Cerramos la activity
+        setResult(RESULT_CANCELED, intent);
+        finish();
     }
 
 

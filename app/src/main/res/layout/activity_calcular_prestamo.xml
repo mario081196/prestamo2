@@ -68,34 +68,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sp_clientes" />
 
-            <TextView
-                android:id="@+id/credito"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Registro de Crédito"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_solicitud2" />
+    <TextView
+        android:id="@+id/credito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Registro de Crédito"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_solicitud2" />
 
-            <TextView
-                android:id="@+id/txt_solicitud2"
-                android:layout_width="245dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Solicitud de Prestamo"
-                android:textColor="@color/colorPrimary"
-                android:textColorLink="@color/colorAccent"
-                android:textSize="24sp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txt_solicitud2"
+        android:layout_width="245dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Solicitud de Prestamo"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textColorLink="@color/colorAccent"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_interes"
